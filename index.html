@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🔥 Beacon Blazers — Half Marathon</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2E7D32;--green2:#388E3C;--green-l:#4CAF50;--green-bg:#E8F5E9;
+  --gray:#37474F;--gray2:#546E7A;--gray-l:#78909C;--gray-bg:#ECEFF1;
+  --white:#FFFFFF;--off:#F5F7F5;--cream:#FAFBF9;
+  --fire:#E65100;--fire2:#FF6D00;--amber:#F57F17;--gold:#FFB300;
+  --tx:#263238;--tx2:#546E7A;--tx3:#90A4AE;--border:#CFD8DC;
+  --r:10px;--fd:'Bebas Neue',sans-serif;--fb:'Libre Franklin',sans-serif
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--off);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;padding-bottom:90px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes barGrow{from{width:0}to{width:var(--bw)}}
+@keyframes pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
+.fu{animation:fadeUp .45s ease both}
+.hdr{background:var(--green);padding:0;position:relative;overflow:hidden}
+.hdr-inner{padding:28px 20px 50px;text-align:center;position:relative;z-index:2}
+.hdr-s{font-family:var(--fd);font-size:14px;letter-spacing:6px;color:rgba(255,255,255,.7);text-transform:uppercase}
+.hdr-t{font-family:var(--fd);font-size:42px;color:#fff;margin:2px 0 4px;letter-spacing:3px;text-transform:uppercase;line-height:1}
+.hdr-line{width:50px;height:3px;background:var(--gold);margin:8px auto;border-radius:2px}
+.hdr-m{font-size:13px;color:rgba(255,255,255,.7);font-weight:600}
+.hdr-runners{position:absolute;bottom:8px;left:0;right:0;height:40px;z-index:1;opacity:.15}
+.hdr-mountain{position:absolute;bottom:0;left:0;right:0;z-index:3}
+.hdr-mountain svg{display:block;width:100%}
+.pk{background:var(--white);border-bottom:2px solid var(--green);padding:10px 12px;display:flex;align-items:center;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:0;z-index:100}
+.pk-l{font-family:var(--fd);font-size:13px;color:var(--gray-l);letter-spacing:2px;white-space:nowrap}
+.pk-b{padding:5px 12px;border-radius:6px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-size:12px;font-family:var(--fb);font-weight:600;color:var(--tx2);transition:all .15s;white-space:nowrap}
+.pk-b.on{border-color:var(--green);color:var(--green);background:var(--green-bg);font-weight:800}
+.tabs{display:flex;background:var(--white);border-bottom:1px solid var(--border)}
+.tab{flex:1;padding:11px 4px;border:none;cursor:pointer;font-family:var(--fd);font-size:14px;background:transparent;color:var(--tx3);transition:all .15s;text-align:center;letter-spacing:1.5px;position:relative}
+.tab.on{color:var(--green);background:var(--green-bg)}
+.tab.on::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:3px;background:var(--green);border-radius:3px 3px 0 0}
+.cnt{max-width:660px;margin:0 auto;padding:16px 12px 20px}
+.cd{background:var(--white);border-radius:var(--r);border:1px solid var(--border);padding:16px;margin-bottom:14px}
+.cd-t{font-family:var(--fd);font-size:18px;color:var(--gray);margin-bottom:12px;letter-spacing:1.5px;display:flex;align-items:center;gap:8px}
+.cd-t::after{content:'';flex:1;height:1px;background:var(--border)}
+.hero{background:var(--white);border-radius:var(--r);padding:20px;margin-bottom:14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--green-l),var(--gold))}
+.hero-runner{position:absolute;right:50px;bottom:5px;opacity:.05}
+.hero-left .hl-top{font-family:var(--fd);font-size:12px;letter-spacing:3px;color:var(--green);text-transform:uppercase}
+.hero-left .hl-days{font-family:var(--fd);font-size:56px;color:var(--gray);line-height:1;letter-spacing:2px}
+.hero-left .hl-lbl{font-size:13px;color:var(--tx2);margin-top:2px}
+.hero-right{text-align:right;position:relative;z-index:1}
+.hero-right .hr-e{font-size:34px}
+.hero-right .hr-mi{font-family:var(--fd);font-size:28px;color:var(--green);letter-spacing:1px}
+.hero-right .hr-lbl{font-family:var(--fd);font-size:10px;color:var(--tx3);letter-spacing:2px}
+.hero-right .hr-pace{font-size:12px;color:var(--fire);font-weight:700;margin-top:2px}
+.prog{margin-bottom:14px;background:var(--white);border-radius:var(--r);border:1px solid var(--border);padding:14px 16px}
+.prog-h{display:flex;justify-content:space-between;font-size:11px;color:var(--tx2);margin-bottom:6px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.prog-h b{color:var(--green)}
+.prog-bar{height:14px;background:var(--gray-bg);border-radius:7px;overflow:hidden;position:relative}
+.prog-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,var(--green),var(--green-l));transition:width .8s ease}
+.prog-runner{position:absolute;top:-1px;transition:left .8s ease;z-index:2}
+.smack{background:var(--green-bg);border-radius:var(--r);border:1px solid rgba(46,125,50,.2);padding:14px 16px;margin-bottom:14px;text-align:center;font-size:14px;line-height:1.6;position:relative}
+.smack b{color:var(--green)}
+.smack::before{content:'💬';position:absolute;top:-8px;left:16px;font-size:16px}
+.lb-r{display:flex;align-items:center;gap:10px;padding:9px 4px;border-radius:6px;animation:slideIn .4s ease both}
+.lb-r:nth-child(odd){background:var(--cream)}
+.lb-rk{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-family:var(--fd);flex-shrink:0;letter-spacing:0}
+.lb-e{font-size:22px;flex-shrink:0}
+.lb-i{flex:1;min-width:0}
+.lb-nm{font-weight:700;font-size:13px;color:var(--gray);display:flex;align-items:center;gap:6px}
+.lb-you{font-size:8px;color:#fff;font-weight:800;background:var(--green);padding:2px 6px;border-radius:3px;letter-spacing:1px;font-family:var(--fd)}
+.lb-br{height:10px;background:var(--gray-bg);border-radius:5px;margin-top:4px;overflow:visible;position:relative}
+.lb-bf{height:100%;border-radius:5px;animation:barGrow .8s ease both}
+.lb-v{text-align:right;min-width:52px}
+.lb-n{font-family:var(--fd);font-size:20px;color:var(--gray);letter-spacing:.5px}
+.lb-u{font-size:8px;color:var(--tx3);text-transform:uppercase;letter-spacing:1px;font-family:var(--fd)}
+.ww{background:var(--white);border:2px solid var(--gold);border-radius:var(--r);padding:16px;margin-bottom:14px}
+.ww-t{font-family:var(--fd);font-size:16px;color:var(--amber);text-align:center;margin-bottom:12px;letter-spacing:2px}
+.ww-row{display:flex;gap:10px}
+.ww-col{flex:1;background:var(--cream);border-radius:8px;padding:12px 8px;border:1px solid var(--border);text-align:center}
+.ww-cat{font-family:var(--fd);font-size:11px;letter-spacing:1.5px;margin-bottom:6px}
+.ww-e{font-size:30px;margin-bottom:2px}
+.ww-nm{font-weight:700;font-size:13px;color:var(--gray)}
+.ww-st{font-size:12px;font-weight:700;margin-top:2px;font-family:var(--fd);letter-spacing:.5px}
+.ww-no{font-size:11px;color:var(--tx3);padding:8px;font-style:italic}
+.grc{background:var(--white);border-radius:var(--r);border:2px solid var(--green);padding:18px;margin-bottom:14px;position:relative;overflow:hidden}
+.grc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--green),var(--green-l),var(--gold))}
+.grc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;margin-top:4px}
+.grc-title{font-family:var(--fd);font-size:18px;color:var(--green);letter-spacing:1.5px}
+.grc-wk{font-size:11px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.grc-route{font-family:var(--fd);font-size:20px;color:var(--gray);margin-bottom:2px;letter-spacing:1px}
+.grc-note{font-size:12px;color:var(--tx2);margin-bottom:14px;font-style:italic}
+.grc-vote-title{font-family:var(--fd);font-size:12px;color:var(--tx2);letter-spacing:2px;margin-bottom:8px}
+.grc-opts{display:flex;gap:10px;margin-bottom:12px}
+.grc-opt{flex:1;border-radius:8px;border:2px solid var(--border);padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--white)}
+.grc-opt:active{transform:scale(.97)}
+.grc-opt.on{border-color:var(--green);background:var(--green-bg)}
+.grc-opt.win{border-color:var(--gold);background:rgba(255,179,0,.06)}
+.grc-opt-day{font-family:var(--fd);font-size:16px;color:var(--gray);letter-spacing:1px}
+.grc-opt-n{font-family:var(--fd);font-size:32px;color:var(--green);margin:4px 0 2px}
+.grc-opt-lbl{font-size:9px;color:var(--tx3);text-transform:uppercase;font-weight:700;letter-spacing:1px}
+.grc-opt-faces{font-size:18px;margin-top:6px;min-height:24px}
+.grc-st-title{font-family:var(--fd);font-size:11px;color:var(--tx3);letter-spacing:2px;margin-bottom:8px}
+.grc-runners{display:flex;gap:6px;flex-wrap:wrap}
+.grc-runner{display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;font-size:12px;font-weight:700;border:1.5px solid var(--border)}
+.grc-runner.sat{background:var(--green-bg);border-color:rgba(46,125,50,.25);color:var(--green)}
+.grc-runner.sun{background:#E3F2FD;border-color:rgba(30,136,229,.2);color:#1E88E5}
+.grc-runner.none{background:var(--gray-bg);color:var(--tx3);border-style:dashed}
+.grc-result{text-align:center;margin-top:12px;padding:10px;border-radius:6px;font-size:13px;font-weight:700}
+.grc-result.decided{background:var(--green-bg);border:1px solid rgba(46,125,50,.2);color:var(--green)}
+.grc-result.waiting{background:var(--gray-bg);border:1px solid var(--border);color:var(--tx3)}
+.tw-solo{padding:5px 0;font-size:13px;color:var(--tx2);border-bottom:1px solid var(--gray-bg)}
+.tw-grp{background:var(--green-bg);border-radius:8px;padding:12px;border:1px solid rgba(46,125,50,.15);margin-top:10px}
+.tw-gl{font-family:var(--fd);font-size:12px;color:var(--green);letter-spacing:2px;margin-bottom:5px}
+.tw-gw{font-family:var(--fd);font-size:16px;color:var(--gray);letter-spacing:1px;margin-bottom:2px}
+.tw-gn{font-size:12px;color:var(--tx2);font-style:italic}
+.poll{margin-top:8px}
+.poll-r{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.poll-l{font-family:var(--fd);font-size:11px;color:var(--tx3);letter-spacing:1px}
+.poll-b{padding:4px 12px;border-radius:5px;border:2px solid var(--border);background:var(--white);cursor:pointer;font-size:11px;font-family:var(--fb);font-weight:600;color:var(--tx2);transition:all .15s}
+.poll-b.on{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.poll-w{font-size:10px;color:var(--green);font-weight:700}
+.wk{background:var(--white);border-radius:var(--r);border:1px solid var(--border);margin-bottom:10px;overflow:hidden}
+.wk.op{border-color:var(--green)}
+.wk.rc{border:2px solid var(--fire);background:#FFF8F5}
+.wk-h{padding:13px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
+.wk-tl{font-family:var(--fd);font-size:16px;color:var(--gray);letter-spacing:1px}
+.wk-mt{font-size:11px;color:var(--tx3);margin-left:8px}
+.badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;margin-left:8px;font-family:var(--fd);letter-spacing:1px}
+.chev{font-size:12px;color:var(--tx3);transition:transform .25s}.chev.op{transform:rotate(180deg)}
+.wk-bd{padding:0 14px 14px;border-top:1px solid var(--gray-bg)}
+.wk-mo{font-style:italic;color:var(--tx2);font-size:13px;margin:10px 0 12px}
+.sl-l{font-family:var(--fd);font-size:11px;color:var(--tx3);letter-spacing:2px;margin-bottom:6px}
+.sl-i{padding:5px 0;font-size:13px;color:var(--tx2);border-bottom:1px solid var(--gray-bg)}
+.grp{background:var(--green-bg);border-radius:8px;padding:12px;border:1px solid rgba(46,125,50,.15);margin-top:10px}
+.grp-l{font-family:var(--fd);font-size:12px;color:var(--green);letter-spacing:2px;margin-bottom:5px}
+.grp-w{font-family:var(--fd);font-size:16px;color:var(--gray);letter-spacing:1px;margin-bottom:2px}
+.grp-n{font-size:12px;color:var(--tx2);font-style:italic}
+.stat-grid{display:flex;gap:8px;text-align:center}
+.stat-box{flex:1;padding:14px 8px;background:var(--cream);border-radius:8px;border:1px solid var(--border)}
+.stat-num{font-family:var(--fd);font-size:26px;letter-spacing:1px}
+.stat-lbl{font-family:var(--fd);font-size:9px;color:var(--tx3);letter-spacing:1.5px;margin-top:2px}
+.log-item{display:flex;align-items:center;justify-content:space-between;padding:9px 4px;font-size:13px;border-radius:4px}
+.log-item:nth-child(odd){background:var(--cream)}
+.log-date{color:var(--tx3);font-size:12px;min-width:80px;font-weight:600}
+.log-mi{font-weight:700;color:var(--gray);font-family:var(--fd);font-size:15px;letter-spacing:.5px}
+.log-pace{color:var(--green);font-weight:700;font-size:12px}
+.log-del{background:none;border:none;color:var(--tx3);cursor:pointer;font-size:16px;padding:0 4px}
+.log-del:hover{color:var(--fire)}
+.race-hero{text-align:center;padding:36px 20px;border-radius:var(--r);margin-bottom:16px;position:relative;overflow:hidden;background:var(--green);border:1px solid var(--green)}
+.race-hero::before{content:'';position:absolute;inset:0;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Cpath d='M0 160c30-15 60 10 100-10s80-40 120 0 60 20 100-5 60-30 80-10' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3Cpath d='M0 140c40-20 80 15 120-5s60-25 100 10 80-15 80 5' fill='none' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E")}
+.race-hero *{position:relative}
+.race-hero-runners{margin:16px auto 0;opacity:.2}
+.race-date-lbl{font-family:var(--fd);font-size:14px;letter-spacing:5px;color:rgba(255,255,255,.7)}
+.race-date{font-family:var(--fd);font-size:38px;color:#fff;margin:4px 0;letter-spacing:3px}
+.race-sub{font-size:14px;color:rgba(255,255,255,.7)}
+.race-dist{font-family:var(--fd);font-size:72px;color:var(--gold);margin:10px 0 0;letter-spacing:4px;line-height:1}
+.race-dist-lbl{font-family:var(--fd);font-size:14px;color:rgba(255,255,255,.5);letter-spacing:4px}
+.race-section{margin-bottom:18px}
+.race-section-t{font-family:var(--fd);font-size:17px;color:var(--gray);letter-spacing:2px;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--green-bg)}
+.race-item{padding:8px 0 8px 14px;border-left:3px solid var(--green);margin-bottom:5px;font-size:13px;color:var(--tx2);line-height:1.5}
+.race-item.hot{border-left-color:var(--fire);font-weight:700;color:var(--tx)}
+.race-mile{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-bg)}
+.race-mile:last-child{border:none}
+.race-mile-n{font-family:var(--fd);font-size:15px;color:var(--green);min-width:50px;flex-shrink:0;letter-spacing:1px}
+.race-mile-t{font-size:13px;color:var(--tx2);line-height:1.5}
+.pledge{margin-top:20px;padding:28px 20px;border-radius:var(--r);text-align:center;border:2px solid var(--green);background:var(--green-bg);position:relative}
+.pledge-t{font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:3px;margin-bottom:12px}
+.pledge-txt{font-size:15px;color:var(--tx2);line-height:2;font-style:italic}
+.pledge-names{margin-top:14px;font-size:18px;letter-spacing:3px}
+.recap-btn{width:100%;padding:14px;border-radius:8px;border:2px solid var(--green);background:var(--green-bg);color:var(--green);font-family:var(--fd);font-size:15px;letter-spacing:2px;cursor:pointer;transition:all .15s;margin-top:4px}
+.recap-btn:active{background:var(--green);color:#fff}
+/* Badges */
+.bdg-grid{display:flex;flex-wrap:wrap;gap:8px}
+.bdg{padding:8px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--cream);text-align:center;min-width:90px;flex:1}
+.bdg.earned{border-color:var(--gold);background:rgba(255,179,0,.08)}
+.bdg.locked{opacity:.4;filter:grayscale(1)}
+.bdg-icon{font-size:24px;margin-bottom:2px}
+.bdg-name{font-family:var(--fd);font-size:11px;color:var(--gray);letter-spacing:1px}
+.bdg-desc{font-size:9px;color:var(--tx3);margin-top:1px}
+/* Run note */
+.log-note{font-size:11px;color:var(--tx3);font-style:italic;margin-top:2px;width:100%}
+.mo-note{width:100%;padding:10px 14px;border-radius:8px;border:2px solid var(--border);background:var(--cream);font-size:13px;font-family:var(--fb);outline:none;color:var(--tx);margin-bottom:12px;resize:none}
+.mo-note:focus{border-color:var(--green)}
+.mo-note::placeholder{color:var(--tx3)}
+.fab{position:fixed;bottom:22px;right:16px;z-index:150;display:flex;gap:7px;align-items:center;padding:14px 22px;border-radius:8px;background:var(--green);color:#fff;font-size:15px;font-weight:700;font-family:var(--fd);cursor:pointer;box-shadow:0 4px 20px rgba(46,125,50,.35);border:none;letter-spacing:2px;animation:pop .4s ease .3s both}
+.fab:active{transform:scale(.94)}
+.mo-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}
+.mo{background:var(--white);border-radius:18px 18px 0 0;padding:28px 22px 40px;width:100%;max-width:480px;animation:fadeUp .2s ease;border-top:4px solid var(--green)}
+.mo h2{font-family:var(--fd);font-size:24px;color:var(--gray);letter-spacing:2px;margin-bottom:4px}
+.mo-sub{font-size:13px;color:var(--tx3);margin-bottom:16px;font-style:italic}
+.mo-row{display:flex;gap:10px;margin-bottom:12px}
+.mo-field{flex:1}
+.mo-label{font-family:var(--fd);font-size:11px;color:var(--tx3);letter-spacing:1px;margin-bottom:5px}
+.mo-input{width:100%;padding:14px;border-radius:8px;border:2px solid var(--border);background:var(--cream);font-size:20px;font-family:var(--fd);font-weight:700;text-align:center;outline:none;color:var(--tx);letter-spacing:2px}
+.mo-input:focus{border-color:var(--green)}
+.mo-date{width:100%;padding:10px 14px;border-radius:8px;border:2px solid var(--border);background:var(--cream);font-size:14px;font-family:var(--fb);outline:none;color:var(--tx);margin-bottom:12px}
+.mo-date:focus{border-color:var(--green)}
+.mo-pace{text-align:center;padding:12px;background:var(--green-bg);border-radius:8px;margin-bottom:16px;font-size:14px;color:var(--tx2)}
+.mo-pace b{color:var(--green);font-size:20px;font-family:var(--fd);letter-spacing:1px}
+.mo-save{width:100%;padding:16px;border-radius:8px;border:none;background:var(--green);color:#fff;font-size:18px;font-family:var(--fd);letter-spacing:3px;cursor:pointer;margin-bottom:8px}
+.mo-save:active{opacity:.9}
+.mo-cancel{width:100%;padding:12px;border-radius:8px;border:none;background:transparent;color:var(--tx3);font-size:13px;cursor:pointer;font-family:var(--fb)}
+.toast{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;font-family:var(--fd);z-index:250;animation:pop .3s ease;pointer-events:none;white-space:nowrap;letter-spacing:2px;box-shadow:0 4px 16px rgba(46,125,50,.3)}
+.setup{position:fixed;inset:0;background:var(--green);display:flex;align-items:center;justify-content:center;z-index:1000;overflow:hidden}
+.setup::before{content:'';position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Cpath d='M0 160c30-20 70 10 100-5s70-30 100 0 60 15 100-8' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3Cpath d='M0 140c40-15 60 20 100 5s60-25 100 5 40 10 100-5' fill='none' stroke='%23fff' stroke-width='1'/%3E%3C/svg%3E")}
+.su-box{text-align:center;padding:24px;max-width:360px;width:100%;position:relative}
+.su-runners{margin-bottom:16px;opacity:.2}
+.su-t{font-family:var(--fd);font-size:36px;color:#fff;letter-spacing:4px;margin-bottom:2px}
+.su-s{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:22px}
+.su-btn{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:8px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);cursor:pointer;transition:all .15s;color:#fff;font-family:var(--fb);width:100%;margin-bottom:8px}
+.su-btn:active{border-color:var(--gold);background:rgba(255,255,255,.1)}
+.su-be{font-size:28px}.su-bn{font-family:var(--fd);font-size:18px;text-align:left;letter-spacing:2px}.su-br{font-size:11px;opacity:.5;text-align:left;font-style:italic}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--green-l);display:inline-block;margin-left:6px;animation:pop 1s ease infinite alternate}
+@media(max-width:480px){.hdr-t{font-size:34px}.hero-left .hl-days{font-size:44px}.hero-right .hr-mi{font-size:22px}.tab{font-size:12px;letter-spacing:.5px}.race-date{font-size:30px}.race-dist{font-size:56px}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script>
+firebase.initializeApp({apiKey:"AIzaSyD_xrKfi0slB0F0MI6JwMzeteYRvNoZjeg",authDomain:"beacon-blazers.firebaseapp.com",databaseURL:"https://beacon-blazers-default-rtdb.firebaseio.com",projectId:"beacon-blazers",storageBucket:"beacon-blazers.firebasestorage.app",messagingSenderId:"172450669598",appId:"1:172450669598:web:635287d1ff4f8486797a0f"});
+const db=firebase.database();
+const RUNNERS_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 60" fill="currentColor"><g opacity=".9"><path d="M60 55l-3-12-5-8 4-10 2-6h-3l-4 5-2-3-6 1-3 5 2 7-5 9 3 12z"/><path d="M42 42l8-4 3-8-1-6-4-2-5 3-3 7 2 10z" opacity=".7"/><path d="M140 55l-2-14-6-7 3-11 3-5h-4l-3 4-3-2-5 2-2 6 1 6-4 10 2 11z"/><path d="M170 55l-4-11-4-9 5-9 1-7h-3l-5 6-1-4-6 0-4 6 3 8-6 8 4 12z"/><path d="M220 53l-3-13-5-7 4-10 2-6h-3l-4 5-2-3-6 1-3 5 2 7-5 9 3 12z" opacity=".6"/><path d="M280 55l-2-12-6-8 3-10 3-6h-3l-4 5-3-3-5 1-3 6 2 7-5 8 3 12z" opacity=".8"/><path d="M310 53l-4-11-4-8 5-10 1-6h-3l-5 5-1-3-6 1-4 5 3 7-6 9 4 11z" opacity=".5"/><path d="M370 55l-3-13-5-7 4-10 2-6h-3l-4 5-2-3-6 1-3 5 2 7-5 9 3 12z" opacity=".7"/><path d="M430 54l-2-12-6-8 3-10 3-6h-4l-3 5-3-3-5 1-3 6 2 7-5 8 4 12z" opacity=".4"/></g></svg>';
+const RUNNER_SINGLE='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" fill="currentColor" width="80" height="100"><path d="M45 18c0-5-4-9-9-9s-9 4-9 9 4 9 9 9 9-4 9-9zM52 42l-8-12c-1-2-3-3-5-3h-8c-2 0-4 1-5 3l-8 12c-1 2 0 5 2 6s5 0 6-2l5-8v8l-12 20c-1 2 0 5 2 6s5 0 6-2l8-14 8 14c1 2 4 3 6 2s3-4 2-6L39 46v-8l5 8c1 2 4 3 6 2s3-4 2-6z"/></svg>';
+const FINISH_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 80" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".15"><rect x="220" y="5" width="60" height="70" rx="2"/><line x1="250" y1="5" x2="250" y2="75"/><line x1="220" y1="20" x2="280" y2="20"/><line x1="220" y1="40" x2="280" y2="40"/><line x1="220" y1="60" x2="280" y2="60"/><rect x="225" y="8" width="12" height="12" fill="currentColor" opacity=".3"/><rect x="250" y="20" width="12" height="12" fill="currentColor" opacity=".3"/><rect x="225" y="40" width="12" height="12" fill="currentColor" opacity=".3"/><rect x="262" y="8" width="12" height="12" fill="currentColor" opacity=".3"/><rect x="237" y="20" width="12" height="12" fill="currentColor" opacity=".3"/><rect x="262" y="40" width="12" height="12" fill="currentColor" opacity=".3"/><path d="M60 75l-3-15-5-8 4-12 2-7h-3l-4 6-2-3-6 1-3 6 2 8-5 10 3 14z" fill="currentColor" opacity=".2"/><path d="M110 73l-4-13-4-9 5-11 1-7h-3l-5 6-1-4-6 0-4 6 3 9-6 9 4 14z" fill="currentColor" opacity=".15"/><path d="M400 74l-3-14-5-7 4-11 2-7h-3l-4 6-2-3-6 1-3 6 2 7-5 10 3 12z" fill="currentColor" opacity=".2"/><path d="M440 73l-2-12-6-8 3-10 3-7h-4l-3 5-3-3-5 1-3 6 2 8-5 8 4 12z" fill="currentColor" opacity=".15"/></svg>';
+const T=[{id:"mehul",name:"Mehul",emoji:"🔥",role:"The Firestarter",c:"#E65100"},{id:"anish",name:"Anish",emoji:"⚡",role:"The Spark",c:"#F57F17"},{id:"vikram",name:"Vikram",emoji:"🏔️",role:"The Mountain",c:"#2E7D32"},{id:"shilpin",name:"Shilpin",emoji:"🎯",role:"The Strategist",c:"#5C6BC0"},{id:"dipak",name:"Dipak",emoji:"🚀",role:"The Closer",c:"#AD1457"}];
+const W=[{w:1,d:"Mar 1–7",p:"Base",t:"32–42°F",m:"The hardest part is the first step out the door.",pc:"#78909C",s:["Tue: Easy 3 mi","Thu: Easy 3 mi"],g:"5 mi — Minuteman Bikeway",gn:"Layers + gloves 🧤"},{w:2,d:"Mar 8–14",p:"Base",t:"35–45°F",m:"Consistency beats intensity.",pc:"#78909C",s:["Tue: Easy 3.5 mi","Thu: Tempo 3 mi"],g:"6 mi — Minuteman extended",gn:"Post-run chai? ☕"},{w:3,d:"Mar 15–21",p:"Build",t:"38–50°F",m:"You're building an engine.",pc:"#2E7D32",s:["Tue: Easy 4 mi","Thu: Intervals 4×800m"],g:"7 mi — Reformatory Branch",gn:"First trail run! 🌲"},{w:4,d:"Mar 22–28",p:"Build",t:"42–55°F",m:"The crew that runs together PRs together.",pc:"#2E7D32",s:["Tue: Easy 4 mi","Thu: Tempo 4 mi"],g:"8 mi — Battle Road Trail",gn:"Stone walls & history ⭐"},{w:5,d:"Mar 29–Apr 4",p:"Peak",t:"48–58°F",m:"Double digits incoming.",pc:"#F57F17",s:["Tue: Easy 4 mi","Thu: Intervals 5×800m","Fri: Easy 3 mi (opt)"],g:"10 mi — Minuteman+Reformatory",gn:"DOUBLE DIGITS 🎉"},{w:6,d:"Apr 5–11",p:"Peak",t:"50–62°F",m:"Closer to the finish than the start.",pc:"#F57F17",s:["Tue: Easy 4 mi","Wed: Easy 3 mi","Thu: Tempo 5 mi"],g:"11 mi — Battle Road+Concord",gn:"Almost race distance 💪"},{w:7,d:"Apr 12–18",p:"PEAK 👑",t:"52–65°F",m:"This week makes race day possible.",pc:"#E65100",s:["Tue: Easy 4 mi","Thu: 3×1mi @ HM pace"],g:"Sat 5mi + Sun 12mi",gn:"THE BIG ONE 🏔️"},{w:8,d:"Apr 19–25",p:"Taper",t:"55–65°F",m:"Trust the process.",pc:"#5C6BC0",s:["Tue: Easy 4 mi","Thu: Easy 3+strides"],g:"8 mi easy — Minuteman",gn:"Taper vibes 😌"},{w:9,d:"Apr 26–May 3",p:"🏆 RACE",t:"58–68°F",m:"You didn't come this far to only come this far.",pc:"#E65100",s:["Tue: 3 mi+strides","Thu: 2 mi shakeout"],g:"🏆 13.1 MI RACE!",gn:"LET'S LIGHT IT UP 🔥🔥🔥"}];
+const WGOAL=[11,12.5,15,16,21,23,24,15,18];
+const WK_STARTS=[[2026,2,1],[2026,2,8],[2026,2,15],[2026,2,22],[2026,2,29],[2026,3,5],[2026,3,12],[2026,3,19],[2026,3,26]];
+function weekOf(ds){const d=new Date(ds+'T12:00:00');for(let i=WK_STARTS.length-1;i>=0;i--)if(d>=new Date(...WK_STARTS[i]))return i;return 0}
+function getCW(){const n=new Date();for(let i=WK_STARTS.length-1;i>=0;i--)if(n>=new Date(...WK_STARTS[i]))return i;return 0}
+function daysLeft(){return Math.max(0,Math.ceil((new Date(2026,4,3)-new Date())/864e5))}
+function fmtPace(mi,mins){if(!mi||!mins)return'--';const p=mins/mi;return Math.floor(p)+"'"+String(Math.round((p%1)*60)).padStart(2,'0')+'"'}
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function weekendDates(wk){const s=new Date(...WK_STARTS[wk]);const sat=new Date(s);sat.setDate(s.getDate()+(6-s.getDay()));const sun=new Date(sat);sun.setDate(sat.getDate()+1);const mo=['Jan','Feb','Mar','Apr','May'];return{sat:mo[sat.getMonth()]+' '+sat.getDate(),sun:mo[sun.getMonth()]+' '+sun.getDate()}}
+function def(){const r={},v={};T.forEach(t=>r[t.id]=[]);W.forEach((_,i)=>v[i]={});return{runs:r,votes:v}}
+function save(d){db.ref('blazers').set(d)}
+function totalMi(u,d){return(d.runs[u]||[]).reduce((a,r)=>a+r.mi,0)}
+function bestPace(u,d){const r=(d.runs[u]||[]).filter(x=>x.mi>=1&&x.min>0);if(!r.length)return Infinity;return Math.min(...r.map(x=>x.min/x.mi))}
+function weekMi(u,w,d){return(d.runs[u]||[]).filter(r=>weekOf(r.date)===w).reduce((a,r)=>a+r.mi,0)}
+function weekBP(u,w,d){const r=(d.runs[u]||[]).filter(x=>weekOf(x.date)===w&&x.mi>=1&&x.min>0);if(!r.length)return Infinity;return Math.min(...r.map(x=>x.min/x.mi))}
+let st={uid:localStorage.getItem("bb_user")||null,tab:"dash",data:def(),ow:null,toast:null,showLog:false,logMi:'',logMin:'',logSec:'',logDate:todayStr(),logNote:''};
+// REAL-TIME: Firebase listener auto-updates when anyone changes data
+db.ref('blazers').on('value',snap=>{const d=snap.val();if(d){T.forEach(t=>{if(!d.runs)d.runs={};if(!d.runs[t.id])d.runs[t.id]=[]});W.forEach((_,i)=>{if(!d.votes)d.votes={};if(!d.votes[i])d.votes[i]={}});st.data=d}render()});
+function set(u){Object.assign(st,u);render()}
+function showToast(m){st.toast=m;render();setTimeout(()=>{st.toast=null;render()},2200)}
+function h(tag,a,...c){const e=document.createElement(tag);if(a)Object.entries(a).forEach(([k,v])=>{if(k==='style'&&typeof v==='object')Object.assign(e.style,v);else if(k==='className')e.className=v;else if(k==='innerHTML')e.innerHTML=v;else if(k.startsWith('on'))e.addEventListener(k.slice(2).toLowerCase(),v);else e.setAttribute(k,v)});c.flat(Infinity).forEach(ch=>{if(ch==null||ch===false)return;e.appendChild(typeof ch==='string'?document.createTextNode(ch):ch)});return e}
+function getSmack(sorted,me){if(!me)return"Pick your name to join!";const mi=sorted.findIndex(s=>s.id===me.id),my=sorted[mi]?.v||0;if(my===0&&sorted[0].v===0)return"Nobody's logged a run. Be the first Blazer to break the seal. 🔥";if(my===0)return sorted[0].emoji+" "+sorted[0].name+" has <b>"+sorted[0].v+" mi</b> and you have <b>zero</b>. Lace up.";if(mi===0){const g=sorted[1]?(my-sorted[1].v).toFixed(1):0;return+g>10?"Crushing it — <b>"+g+" mi</b> ahead. Don't let up. 👑":+g>0?"Leading by <b>"+g+" mi</b> but "+sorted[1].emoji+" "+sorted[1].name+" is closing in. 🔥":"Tied at the top. One run changes everything.";}const g=(sorted[0].v-my).toFixed(1);return+g<=5?"Only <b>"+g+" mi</b> behind "+sorted[0].emoji+" "+sorted[0].name+". One big week. 💪":+g<=15?sorted[0].emoji+" "+sorted[0].name+" leads by <b>"+g+" mi</b>. Catchable. 🎯":sorted[0].emoji+" "+sorted[0].name+" is <b>"+g+" mi</b> up. Blazers don't quit. 🔥";}
+function renderSetup(){return h('div',{className:'setup'},h('div',{className:'su-box fu'},h('div',{className:'su-runners',innerHTML:RUNNERS_SVG}),h('div',{className:'su-t'},'Beacon Blazers'),h('div',{className:'su-s'},'Half Marathon · Bedford, MA · May 3, 2026'),...T.map(t=>h('div',{className:'su-btn',onClick:()=>{localStorage.setItem("bb_user",t.id);set({uid:t.id})}},h('span',{className:'su-be'},t.emoji),h('div',null,h('div',{className:'su-bn'},t.name),h('div',{className:'su-br'},t.role))))))}
+function renderPoll(wk){if(!st.uid)return h('span');const vo=st.data.votes[wk]||{},my=vo[st.uid];const sN=Object.values(vo).filter(v=>v==="sat").length,uN=Object.values(vo).filter(v=>v==="sun").length;const win=sN>uN?"SAT":uN>sN?"SUN":null;const voters={sat:[],sun:[]};Object.entries(vo).forEach(([uid,v])=>{const u=T.find(t=>t.id===uid);if(u)voters[v].push(u.emoji)});const wd=weekendDates(wk);return h('div',{className:'poll'},h('div',{className:'poll-r'},h('span',{className:'poll-l'},'Day:'),...["sat","sun"].map(d=>h('button',{className:'poll-b'+(my===d?' on':''),onClick:()=>{st.data.votes[wk]={...st.data.votes[wk],[st.uid]:d};save(st.data)}},(d==="sat"?"☀️ Sat "+wd.sat:"🌤️ Sun "+wd.sun)+" ("+(d==="sat"?sN:uN)+")"+(voters[d].length?" "+voters[d].join(""):""))),win?h('span',{className:'poll-w'},'→ '+win):null))}
+function renderWW(wk){const miD=T.map(t=>({...t,v:weekMi(t.id,wk,st.data)})).sort((a,b)=>b.v-a.v);const mW=miD[0]?.v>0?miD[0]:null;const pD=T.map(t=>({...t,v:weekBP(t.id,wk,st.data)})).filter(t=>t.v<Infinity).sort((a,b)=>a.v-b.v);const pW=pD.length?pD[0]:null;if(!mW&&!pW)return null;return h('div',{className:'ww fu'},h('div',{className:'ww-t'},'🏆 WEEK '+(wk+1)+' WINNERS'),h('div',{className:'ww-row'},h('div',{className:'ww-col'},h('div',{className:'ww-cat',style:{color:'var(--fire)'}},'📏 MOST MILES'),mW?[h('div',{className:'ww-e'},mW.emoji),h('div',{className:'ww-nm'},mW.name),h('div',{className:'ww-st',style:{color:'var(--fire)'}},mW.v.toFixed(1)+' mi')]:h('div',{className:'ww-no'},'No runs yet')),h('div',{className:'ww-col'},h('div',{className:'ww-cat',style:{color:'var(--green)'}},'⚡ FASTEST PACE'),pW?[h('div',{className:'ww-e'},pW.emoji),h('div',{className:'ww-nm'},pW.name),h('div',{className:'ww-st',style:{color:'var(--green)'}},fmtPace(1,pW.v)+'/mi')]:h('div',{className:'ww-no'},'No runs yet'))))}
+function renderGRC(wk){const week=W[wk],vo=st.data.votes[wk]||{},my=st.uid?vo[st.uid]:null;const satV=T.filter(t=>vo[t.id]==="sat"),sunV=T.filter(t=>vo[t.id]==="sun"),noV=T.filter(t=>!vo[t.id]);const sN=satV.length,uN=sunV.length,tot=sN+uN,win=sN>uN?"sat":uN>sN?"sun":null;const wd=weekendDates(wk);function dv(d){if(!st.uid)return;st.data.votes[wk]={...st.data.votes[wk],[st.uid]:d};save(st.data)}return h('div',{className:'grc fu'},h('div',{className:'grc-top'},h('div',{className:'grc-title'},'🏃 THIS WEEKEND'),h('div',{className:'grc-wk'},'WK '+(wk+1)+' · '+week.d)),h('div',{className:'grc-route'},week.g),h('div',{className:'grc-note'},week.gn),h('div',null,h('div',{className:'grc-vote-title'},'PICK YOUR DAY'),h('div',{className:'grc-opts'},h('div',{className:'grc-opt'+(my==="sat"?' on':'')+(win==="sat"?' win':''),onClick:()=>dv("sat")},h('div',{className:'grc-opt-day'},'☀️ SAT'),h('div',{style:{fontSize:'11px',color:'var(--tx2)',fontWeight:700,marginTop:'2px'}},wd.sat),h('div',{className:'grc-opt-n'},String(sN)),h('div',{className:'grc-opt-lbl'},'runners'),h('div',{className:'grc-opt-faces'},satV.map(t=>t.emoji).join(' ')||' ')),h('div',{className:'grc-opt'+(my==="sun"?' on':'')+(win==="sun"?' win':''),onClick:()=>dv("sun")},h('div',{className:'grc-opt-day'},'🌤️ SUN'),h('div',{style:{fontSize:'11px',color:'var(--tx2)',fontWeight:700,marginTop:'2px'}},wd.sun),h('div',{className:'grc-opt-n'},String(uN)),h('div',{className:'grc-opt-lbl'},'runners'),h('div',{className:'grc-opt-faces'},sunV.map(t=>t.emoji).join(' ')||' '))),h('div',null,h('div',{className:'grc-st-title'},'SQUAD STATUS'),h('div',{className:'grc-runners'},...satV.map(t=>h('div',{className:'grc-runner sat'},t.emoji,' ',t.name,' ☀️')),...sunV.map(t=>h('div',{className:'grc-runner sun'},t.emoji,' ',t.name,' 🌤️')),...noV.map(t=>h('div',{className:'grc-runner none'},t.emoji,' ',t.name,' ❓')))),win?h('div',{className:'grc-result decided'},'✅ '+(win==="sat"?"SATURDAY "+wd.sat:"SUNDAY "+wd.sun)+' WINS'+(noV.length?' · '+noV.length+' PENDING':'')):tot>0?h('div',{className:'grc-result waiting'},'TIED · '+(5-tot)+' VOTES LEFT'):h('div',{className:'grc-result waiting'},'NO VOTES YET — GO FIRST 👆')))}
+function generateRecap(wk){const week=W[wk],wd=weekendDates(wk),wg=WGOAL[wk];const miSorted=T.map(t=>({...t,wmi:weekMi(t.id,wk,st.data),tmi:totalMi(t.id,st.data)})).sort((a,b)=>b.wmi-a.wmi);const miWin=miSorted[0]?.wmi>0?miSorted[0]:null;const pSorted=T.map(t=>({...t,v:weekBP(t.id,wk,st.data)})).filter(t=>t.v<Infinity).sort((a,b)=>a.v-b.v);const pWin=pSorted.length?pSorted[0]:null;const nw=wk<8?W[wk+1]:null;const nwd=wk<8?weekendDates(wk+1):null;let txt='🔥 BEACON BLAZERS — WEEK '+(wk+1)+' RECAP\n'+week.d+' · Goal: '+wg+' mi\n\n';if(miWin||pWin){txt+='🏆 WEEKLY WINNERS\n';if(miWin)txt+='📏 Most Miles: '+miWin.emoji+' '+miWin.name+' — '+miWin.wmi.toFixed(1)+' mi\n';if(pWin)txt+='⚡ Fastest Pace: '+pWin.emoji+' '+pWin.name+' — '+fmtPace(1,pWin.v)+'/mi\n';txt+='\n';}txt+='📏 THIS WEEK\n';miSorted.forEach((s,i)=>{txt+=(i+1)+'. '+s.emoji+' '+s.name+' — '+s.wmi.toFixed(1)+'/'+wg+' mi\n'});if(nw){txt+='\n📅 NEXT WEEK: '+nw.g+'\nGoal: '+WGOAL[wk+1]+' mi · Vote SAT '+nwd.sat+' or SUN '+nwd.sun+'!\n';}txt+='\n💪 "'+week.m+'"\n\n🔥⚡🏔️🎯🚀';return txt}
+function shareRecap(wk){const txt=generateRecap(wk);if(navigator.share){navigator.share({text:txt}).catch(()=>{})}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>showToast('RECAP COPIED!')).catch(()=>fallbackCopy(txt))}else fallbackCopy(txt)}
+function fallbackCopy(txt){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast('RECAP COPIED!')}
+function renderDash(){const me=T.find(t=>t.id===st.uid),cw=getCW(),week=W[cw],wg=WGOAL[cw],days=daysLeft(),teamTot=T.reduce((a,t)=>a+totalMi(t.id,st.data),0);const wkSorted=T.map(t=>({...t,v:Math.round(weekMi(t.id,cw,st.data)*10)/10})).sort((a,b)=>b.v-a.v);const rkBg=['#FFB300','#90A4AE','#8D6E63','#CFD8DC','#CFD8DC'],rkTx=['#263238','#fff','#fff','#78909C','#78909C'];const progPct=Math.min(100,teamTot/880*100);const myWkMi=me?weekMi(me.id,cw,st.data):0;const myP=me?bestPace(me.id,st.data):Infinity;
+return h('div',null,
+h('div',{className:'hero fu'},h('div',{className:'hero-runner',innerHTML:RUNNER_SINGLE}),h('div',{className:'hero-left'},h('div',{className:'hl-top'},'RACE DAY · MAY 3'),h('div',{className:'hl-days'},String(days)),h('div',{className:'hl-lbl'},'days to go')),me?h('div',{className:'hero-right'},h('div',{className:'hr-e'},me.emoji),h('div',{className:'hr-mi'},myWkMi.toFixed(1)+'/'+wg),h('div',{className:'hr-lbl'},'THIS WEEK MI'),myP<Infinity?h('div',{className:'hr-pace'},fmtPace(1,myP)+'/mi best'):null):null),
+h('div',{className:'prog fu'},h('div',{className:'prog-h'},h('span',null,'Team: ',h('b',null,Math.round(teamTot)+' mi')),h('span',null,'Goal: 880 mi')),h('div',{className:'prog-bar',style:{position:'relative'}},h('div',{className:'prog-fill',style:{width:progPct+'%'}}),h('div',{className:'prog-runner',style:{left:'calc('+progPct+'% - 8px)'},innerHTML:'<svg width="16" height="16" viewBox="0 0 80 100" fill="#2E7D32"><path d="M45 18c0-5-4-9-9-9s-9 4-9 9 4 9 9 9 9-4 9-9zM52 42l-8-12c-1-2-3-3-5-3h-8c-2 0-4 1-5 3l-8 12c-1 2 0 5 2 6s5 0 6-2l5-8v8l-12 20c-1 2 0 5 2 6s5 0 6-2l8-14 8 14c1 2 4 3 6 2s3-4 2-6L39 46v-8l5 8c1 2 4 3 6 2s3-4 2-6z"/></svg>'}))),
+h('div',{className:'smack fu'},(()=>{const d=h('div');d.innerHTML=getSmack(wkSorted,me?{...me,v:myWkMi}:null);return d})()),
+renderGRC(cw),renderWW(cw),
+h('div',{className:'cd fu'},h('div',{className:'cd-t'},'📏 WEEK '+(cw+1)+' MILES'),h('div',{style:{fontSize:'11px',color:'var(--tx3)',marginTop:'-8px',marginBottom:'10px',fontWeight:600}},'Goal: '+wg+' mi this week'),...wkSorted.map((s,i)=>{const pct=Math.min(100,s.v/wg*100);return h('div',{className:'lb-r',style:{animationDelay:i*60+'ms'}},h('div',{className:'lb-rk',style:{background:rkBg[i],color:rkTx[i]}},i===0&&s.v>0?'👑':String(i+1)),h('div',{className:'lb-e'},s.emoji),h('div',{className:'lb-i'},h('div',{className:'lb-nm'},s.name,s.id===st.uid?h('span',{className:'lb-you'},'YOU'):null),h('div',{className:'lb-br'},h('div',{className:'lb-bf',style:{width:pct+'%',background:pct>=100?'var(--green)':s.c,'--bw':pct+'%'}}))),h('div',{className:'lb-v'},h('div',{className:'lb-n',style:{color:pct>=100?'var(--green)':i===0&&s.v>0?'var(--fire)':'var(--gray)'}},s.v.toFixed(1)),h('div',{className:'lb-u'},'/'+wg+' MI')))})),
+(()=>{const ps=T.map(t=>({...t,v:weekBP(t.id,cw,st.data)})).filter(t=>t.v<Infinity).sort((a,b)=>a.v-b.v);if(!ps.length)return null;return h('div',{className:'cd fu'},h('div',{className:'cd-t'},'⚡ WEEK '+(cw+1)+' SPEED'),...ps.map((s,i)=>h('div',{className:'lb-r'},h('div',{className:'lb-rk',style:{background:rkBg[i],color:rkTx[i]}},i===0?'⚡':String(i+1)),h('div',{className:'lb-e'},s.emoji),h('div',{className:'lb-i'},h('div',{className:'lb-nm'},s.name,s.id===st.uid?h('span',{className:'lb-you'},'YOU'):null)),h('div',{className:'lb-v'},h('div',{className:'lb-n',style:{color:i===0?'var(--green)':'var(--gray)'}},fmtPace(1,s.v)),h('div',{className:'lb-u'},'PER MI')))))})(),
+h('div',{className:'cd fu'},h('div',{className:'cd-t'},'📊 TOTAL MILES'),...T.map(t=>({...t,v:Math.round(totalMi(t.id,st.data)*10)/10})).sort((a,b)=>b.v-a.v).map((s,i)=>h('div',{className:'lb-r'},h('div',{className:'lb-rk',style:{background:rkBg[i],color:rkTx[i]}},i===0&&s.v>0?'👑':String(i+1)),h('div',{className:'lb-e'},s.emoji),h('div',{className:'lb-i'},h('div',{className:'lb-nm'},s.name,s.id===st.uid?h('span',{className:'lb-you'},'YOU'):null)),h('div',{className:'lb-v'},h('div',{className:'lb-n'},String(s.v)),h('div',{className:'lb-u'},'MILES'))))),
+h('div',{className:'cd fu'},h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}},h('div',{className:'cd-t',style:{margin:0}},'📅 WEEK '+(cw+1)),h('span',{className:'badge',style:{background:week.pc+'18',color:week.pc}},week.p)),h('div',{style:{fontSize:'11px',color:'var(--tx3)',marginBottom:'7px',fontWeight:600}},week.d+' · '+week.t),h('div',{className:'sl-l'},'SOLO'),...week.s.map(s=>h('div',{className:'tw-solo'},s)),h('div',{className:'tw-grp'},h('div',{className:'tw-gl'},'GROUP RUN'),h('div',{className:'tw-gw'},week.g),h('div',{className:'tw-gn'},week.gn),renderPoll(cw))),
+h('button',{className:'recap-btn fu',onClick:()=>shareRecap(cw)},'📋 SHARE WEEKLY RECAP'))}
+function renderPlan(){return h('div',null,...W.map((w,i)=>{const op=st.ow===i,rc=w.p.includes("RACE");return h('div',{className:'wk'+(op?' op':'')+(rc?' rc':'')},h('div',{className:'wk-h',onClick:()=>set({ow:op?null:i})},h('div',null,h('span',{className:'wk-tl'},'WK '+(i+1)),h('span',{className:'wk-mt'},w.d),h('span',{className:'badge',style:{background:w.pc+'18',color:w.pc}},w.p),h('span',{style:{fontSize:'10px',color:'var(--tx3)',marginLeft:'6px'}},WGOAL[i]+' mi')),h('span',{className:'chev'+(op?' op':'')},'▼')),op?h('div',{className:'wk-bd'},h('p',{className:'wk-mo'},'"'+w.m+'"'),renderWW(i),h('div',{className:'sl-l'},'SOLO'),...w.s.map(s=>h('div',{className:'sl-i'},s)),h('div',{className:'grp'},h('div',{className:'grp-l'},'GROUP RUN'),h('div',{className:'grp-w'},w.g),h('div',{className:'grp-n'},w.gn),renderPoll(i))):null)}))}
+// BADGES
+const BADGES=[
+  {id:'first',icon:'🏃',name:'FIRST RUN',desc:'Log your first run',check:(u,d)=>(d.runs[u]||[]).length>=1},
+  {id:'five',icon:'✋',name:'HIGH FIVE',desc:'5 runs logged',check:(u,d)=>(d.runs[u]||[]).length>=5},
+  {id:'ten',icon:'🔟',name:'DOUBLE DIGITS',desc:'10 runs logged',check:(u,d)=>(d.runs[u]||[]).length>=10},
+  {id:'mi10',icon:'🏅',name:'10 MILE CLUB',desc:'10+ total miles',check:(u,d)=>totalMi(u,d)>=10},
+  {id:'mi50',icon:'💪',name:'50 MILE CLUB',desc:'50+ total miles',check:(u,d)=>totalMi(u,d)>=50},
+  {id:'mi100',icon:'💯',name:'CENTURION',desc:'100+ total miles',check:(u,d)=>totalMi(u,d)>=100},
+  {id:'speed',icon:'⚡',name:'SPEED DEMON',desc:'Sub 9 min pace',check:(u,d)=>bestPace(u,d)<9},
+  {id:'pwk',icon:'🎯',name:'PERFECT WEEK',desc:'Hit weekly goal',check:(u,d)=>{for(let w=0;w<9;w++)if(weekMi(u,w,d)>=WGOAL[w])return true;return false}},
+  {id:'long',icon:'🏔️',name:'LONG HAUL',desc:'Single run 10+ mi',check:(u,d)=>(d.runs[u]||[]).some(r=>r.mi>=10)},
+  {id:'early',icon:'🌅',name:'EARLY BIRD',desc:'Run on a Monday',check:(u,d)=>(d.runs[u]||[]).some(r=>new Date(r.date+'T12:00:00').getDay()===1)}
+];
+function getUserBadges(u,d){return BADGES.map(b=>({...b,earned:b.check(u,d)}))}
+function renderBadges(u){const bds=getUserBadges(u,st.data),earned=bds.filter(b=>b.earned).length;return h('div',{className:'cd fu'},h('div',{className:'cd-t'},'🎖️ BADGES ('+earned+'/'+BADGES.length+')'),h('div',{className:'bdg-grid'},...bds.map(b=>h('div',{className:'bdg'+(b.earned?' earned':' locked')},h('div',{className:'bdg-icon'},b.icon),h('div',{className:'bdg-name'},b.name),h('div',{className:'bdg-desc'},b.earned?'✅ Earned':b.desc)))))}
+
+function renderMyRuns(){if(!st.uid)return h('div',{className:'cd',style:{textAlign:'center',color:'var(--tx3)'}},'Pick your name above');const me=T.find(t=>t.id===st.uid),runs=[...(st.data.runs[st.uid]||[])].sort((a,b)=>b.date.localeCompare(a.date)),tot=runs.reduce((a,r)=>a+r.mi,0),bp=bestPace(st.uid,st.data);return h('div',null,h('div',{className:'cd fu'},h('div',{className:'cd-t'},me.emoji+' MY STATS'),h('div',{className:'stat-grid'},h('div',{className:'stat-box'},h('div',{className:'stat-num',style:{color:'var(--fire)'}},tot.toFixed(1)),h('div',{className:'stat-lbl'},'TOTAL MI')),h('div',{className:'stat-box'},h('div',{className:'stat-num',style:{color:'var(--gray)'}},String(runs.length)),h('div',{className:'stat-lbl'},'RUNS')),h('div',{className:'stat-box'},h('div',{className:'stat-num',style:{color:'var(--green)'}},bp<Infinity?fmtPace(1,bp):'--'),h('div',{className:'stat-lbl'},'BEST PACE')))),renderBadges(st.uid),h('div',{className:'cd fu'},h('div',{className:'cd-t'},'📋 RUN LOG'),runs.length?runs.map(r=>{const dt=new Date(r.date+'T12:00:00');return h('div',{style:{marginBottom:'4px'}},h('div',{className:'log-item'},h('div',{className:'log-date'},['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][dt.getDay()]+' '+['Jan','Feb','Mar','Apr','May'][dt.getMonth()]+' '+dt.getDate()),h('div',{className:'log-mi'},r.mi.toFixed(1)+' MI'),r.min>0?h('div',{className:'log-pace'},fmtPace(r.mi,r.min)+'/mi'):h('div',{className:'log-pace',style:{color:'var(--tx3)'}},'--'),h('button',{className:'log-del',onClick:()=>{if(confirm('Delete?')){st.data.runs[st.uid].splice(st.data.runs[st.uid].indexOf(r),1);save(st.data)}}},'×')),r.note?h('div',{className:'log-note',style:{paddingLeft:'4px'}},'💬 '+r.note):null)}):h('div',{style:{textAlign:'center',padding:'24px',color:'var(--tx3)',fontStyle:'italic'}},'No runs yet. Hit the Log Run button!')))}
+function renderRace(){return h('div',null,h('div',{className:'race-hero fu'},h('div',{className:'race-date-lbl'},'RACE DAY'),h('div',{className:'race-date'},'MAY 3, 2026'),h('div',{className:'race-sub'},'Bedford, Massachusetts'),h('div',{className:'race-dist'},'13.1'),h('div',{className:'race-dist-lbl'},'MILES'),h('div',{className:'race-hero-runners',innerHTML:RUNNERS_SVG})),h('div',{className:'race-section fu'},h('div',{className:'race-section-t'},'🌙 NIGHT BEFORE'),h('div',{className:'race-item'},'Lay out EVERYTHING — bib, shoes, socks, shorts, shirt, watch, fuel'),h('div',{className:'race-item'},'Familiar carb dinner — pasta, rice, whatever YOUR body knows'),h('div',{className:'race-item'},'Hydrate but stop 2 hours before bed'),h('div',{className:'race-item'},'Set TWO alarms'),h('div',{className:'race-item hot'},'Text the Blazers: "See you at the start line 🔥"')),h('div',{className:'race-section fu'},h('div',{className:'race-section-t'},'☀️ RACE MORNING'),h('div',{className:'race-item'},'Wake 3 hours before start. Eat your tested meal.'),h('div',{className:'race-item'},'Arrive 60–90 min early. Parking, bib, bathroom.'),h('div',{className:'race-item hot'},'Meet the Blazers. GROUP PHOTO first! 📸'),h('div',{className:'race-item'},'10 min easy jog + dynamic stretches'),h('div',{className:'race-item hot'},'NOTHING NEW ON RACE DAY. Wear what you trained in.')),h('div',{className:'race-section fu'},h('div',{className:'race-section-t'},'🏁 MILE BY MILE'),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 1–3'),h('div',{className:'race-mile-t'},'START SLOW. If it feels easy, you\'re doing it right. Settle in.')),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 4–6'),h('div',{className:'race-mile-t'},'Find your groove. First gel around mile 5. Stay steady.')),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 7–9'),h('div',{className:'race-mile-t'},'The tough stretch. Run WITH your Blazers. This is where the crew matters.')),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 10'),h('div',{className:'race-mile-t'},'Second gel. "Only a 5K left!" 🎯 Shilpin\'s strategy kicks in.')),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 11–12'),h('div',{className:'race-mile-t'},'🏔️ Vikram\'s steadiness. Lean on the Mountain. You\'re almost there.')),h('div',{className:'race-mile'},h('div',{className:'race-mile-n'},'MI 13+'),h('div',{className:'race-mile-t'},'🚀 Dipak — THE CLOSER. Bring the squad home. Leave nothing on the road.'))),h('div',{className:'race-section fu'},h('div',{className:'race-section-t'},'🏅 FINISH LINE'),h('div',{className:'race-item hot'},'Arms up. Cross the line. Hug your teammates.'),h('div',{className:'race-item hot'},'You are HALF MARATHONERS. 🏅🏅🏅🏅🏅'),h('div',{className:'race-item'},'Post-race photo. Medal flex. Celebrate HARD.')),h('div',{className:'pledge fu'},h('div',{className:'pledge-t'},'THE BLAZERS PLEDGE'),h('div',{className:'pledge-txt'},'We show up. We run together. We push each other.',h('br'),'We don\'t leave anyone behind.',h('br'),'On May 3, five runners become five half marathoners.'),h('div',{className:'pledge-names'},'🔥 ⚡ 🏔️ 🎯 🚀')))}
+function updPace(){const el=document.getElementById('mo-pace');if(!el)return;const mi=parseFloat(st.logMi)||0,mins=(parseInt(st.logMin)||0)+(parseInt(st.logSec)||0)/60;el.innerHTML=mi>=1&&mins>0?'Pace: <b>'+fmtPace(mi,mins)+'/mi</b>':'Pace: <b>--</b> (time optional)'}
+function renderModal(){if(!st.showLog||!st.uid)return null;const me=T.find(t=>t.id===st.uid),mi=parseFloat(st.logMi)||0,mins=(parseInt(st.logMin)||0)+(parseInt(st.logSec)||0)/60,ps=mi>=1&&mins>0?fmtPace(mi,mins)+'/mi':'--';return h('div',{className:'mo-bg',onClick:e=>{if(e.target.className==='mo-bg')set({showLog:false})}},h('div',{className:'mo'},h('h2',null,me.emoji+' LOG RUN'),h('div',{className:'mo-sub'},'Distance and time from your run'),h('input',{className:'mo-date',type:'date',value:st.logDate,onChange:e=>{st.logDate=e.target.value}}),h('div',{className:'mo-row'},h('div',{className:'mo-field'},h('div',{className:'mo-label'},'MILES'),h('input',{className:'mo-input',type:'number',placeholder:'0.0',min:'0',step:'0.1',inputmode:'decimal',value:st.logMi,onInput:e=>{st.logMi=e.target.value;updPace()},id:'log-mi'}))),h('div',{className:'mo-row'},h('div',{className:'mo-field'},h('div',{className:'mo-label'},'MIN'),h('input',{className:'mo-input',type:'number',placeholder:'0',min:'0',inputmode:'numeric',value:st.logMin,onInput:e=>{st.logMin=e.target.value;updPace()}})),h('div',{className:'mo-field'},h('div',{className:'mo-label'},'SEC'),h('input',{className:'mo-input',type:'number',placeholder:'0',min:'0',max:'59',inputmode:'numeric',value:st.logSec,onInput:e=>{st.logSec=e.target.value;updPace()}}))),h('div',{className:'mo-pace',id:'mo-pace'},'Pace: ',h('b',null,ps),' ',mins<=0?'(time optional)':''),h('textarea',{className:'mo-note',placeholder:'How did it feel? (optional)',rows:'2',value:st.logNote,onInput:e=>{st.logNote=e.target.value}}),h('button',{className:'mo-save',onClick:doAdd},'🔥 LOG IT'),h('button',{className:'mo-cancel',onClick:()=>set({showLog:false,logMi:'',logMin:'',logSec:'',logNote:''})},'Cancel')))}
+function doAdd(){const mi=parseFloat(st.logMi);if(!isNaN(mi)&&mi>0&&st.uid){const mins=(parseInt(st.logMin)||0)+(parseInt(st.logSec)||0)/60;if(!st.data.runs[st.uid])st.data.runs[st.uid]=[];const run={date:st.logDate,mi:Math.round(mi*10)/10,min:Math.round(mins*10)/10};if(st.logNote.trim())run.note=st.logNote.trim();st.data.runs[st.uid].push(run);save(st.data);const cw=getCW(),wmi=weekMi(st.uid,cw,st.data);set({showLog:false,logMi:'',logMin:'',logSec:'',logDate:todayStr(),logNote:''});showToast('+'+mi.toFixed(1)+' MI · WEEK: '+wmi.toFixed(1)+'/'+WGOAL[cw])}}
+function render(){const app=document.getElementById('app');app.innerHTML='';if(!st.uid){app.appendChild(renderSetup());return}
+const hdr=h('div',{className:'hdr'});hdr.appendChild(h('div',{className:'hdr-inner'},h('div',{className:'hdr-s'},'BEDFORD, MA'),h('div',{className:'hdr-t'},'BEACON BLAZERS'),h('div',{className:'hdr-line'}),h('div',{className:'hdr-m'},'Half Marathon Training Hub')));hdr.appendChild(h('div',{className:'hdr-runners',innerHTML:RUNNERS_SVG}));const mtn=h('div',{className:'hdr-mountain'});mtn.innerHTML='<svg viewBox="0 0 1200 40" xmlns="http://www.w3.org/2000/svg"><path d="M0 40 L0 25 L80 18 L160 22 L240 10 L320 16 L400 8 L480 14 L560 5 L640 12 L720 6 L800 15 L880 8 L960 18 L1040 12 L1120 20 L1200 15 L1200 40Z" fill="'+getComputedStyle(document.documentElement).getPropertyValue('--off').trim()+'"/></svg>';hdr.appendChild(mtn);app.appendChild(hdr);
+app.appendChild(h('div',{className:'pk'},h('span',{className:'pk-l'},'RUNNER:'),...T.map(t=>h('button',{className:'pk-b'+(st.uid===t.id?' on':''),style:st.uid===t.id?{borderColor:t.c,color:t.c,background:t.c+'12'}:{},onClick:()=>{localStorage.setItem("bb_user",t.id);set({uid:t.id})}},t.emoji+' '+t.name))));
+app.appendChild(h('div',{className:'tabs'},...[{id:"dash",l:"🏠 HOME"},{id:"plan",l:"📅 PLAN"},{id:"runs",l:"🏃 RUNS"},{id:"race",l:"🏁 RACE DAY"}].map(t=>h('button',{className:'tab'+(st.tab===t.id?' on':''),onClick:()=>set({tab:t.id})},t.l))));
+const c=h('div',{className:'cnt'});if(st.tab==='dash')c.appendChild(renderDash());else if(st.tab==='plan')c.appendChild(renderPlan());else if(st.tab==='runs')c.appendChild(renderMyRuns());else c.appendChild(renderRace());app.appendChild(c);
+app.appendChild(h('button',{className:'fab',onClick:()=>set({showLog:true,logDate:todayStr()})},'🏃 LOG RUN'));
+const mo=renderModal();if(mo)app.appendChild(mo);
+if(st.toast)app.appendChild(h('div',{className:'toast'},st.toast));
+if(st.showLog)setTimeout(()=>{const el=document.getElementById('log-mi');if(el)el.focus()},150)}
+render();
+</script>
+</body>
+</html>
